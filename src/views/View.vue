@@ -50,9 +50,7 @@ export default {
 
   created() {
     this.$http
-      .get(
-        `https://comento.cafe24.com/detail.php?req_no=${this.$route.params.no}`
-      )
+      .get(`${this.$host}/post/${this.$route.params.no}`)
       .then(res => {
         this.detail = res.data.detail;
       })

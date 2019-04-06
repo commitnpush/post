@@ -4,10 +4,7 @@
       <div class="header">Sponsored</div>
       <div class="body">
         <div class="img">
-          <img
-            :src="'https://comento.cafe24.com/public/images/' + ad.img"
-            alt=""
-          />
+          <img :src="$host + '/public/images/' + ad.img" alt="" />
         </div>
         <div class="content">
           <div class="title">{{ ad.title }}</div>

@@ -51,9 +51,7 @@ export default {
   methods: {
     getPosts() {
       window.scroll(0, 0);
-      let url = `https://comento.cafe24.com/request.php?page=1&ord=${
-        this.asc ? "asc" : "desc"
-      }`;
+      let url = `${this.$host}/post?page=1&ord=${this.asc ? "asc" : "desc"}`;
       if (typeof this.options !== "undefined" && this.options.length > 0) {
         url += `&category=${this.options.join(",")}`;
       }
@@ -65,16 +63,14 @@ export default {
         })
         .then(result => {
           this.posts = result;
-          return this.$http.get("https://comento.cafe24.com/category.php");
+          return this.$http.get(`${this.$host}/category`);
         })
         .then(res => {
           return res.data.list;
         })
         .then(result => {
           this.categories = result;
-          return this.$http.get(
-            "https://comento.cafe24.com/ads.php?page=1&limit=30"
-          );
+          return this.$http.get(`${this.$host}/ad`);
         })
         .then(res => {
           return res.data.list;
@@ -87,8 +83,9 @@ export default {
         });
     },
     morePosts(page) {
-      let url = `https://comento.cafe24.com/request.php?page=${page ||
-        ++this.page}&ord=${this.asc ? "asc" : "desc"}`;
+      let url = `${this.$host}/post?page=${page || ++this.page}&ord=${
+        this.asc ? "asc" : "desc"
+      }`;
       if (typeof this.options !== "undefined" && this.options.length > 0) {
         url += `&category=${this.options.join(",")}`;
       }
